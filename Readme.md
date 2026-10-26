@@ -1,0 +1,2 @@
+TrackIt - Smart Expense Tracker
+​TrackIt is a modern, responsive, and privacy-focused personal expense tracker web application built using HTML5, CSS3, and Vanilla JavaScript. It provides instant visibility into your cash flow, tracks your daily income and expenditures, allows dynamic category filtering, supports dark and light modes, and persists all your financial records locally within your browser.
