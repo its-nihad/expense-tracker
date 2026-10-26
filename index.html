@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Expense Tracker</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <i class="fa-solid fa-wallet"></i>
+        <span>TrackIt</span>
+      </div>
+      <button id="themeToggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <!-- Overview Cards -->
+    <section class="summary-cards">
+      <div class="card total-balance">
+        <span class="card-title">Total Balance</span>
+        <h2 id="balanceAmount">₹0.00</h2>
+      </div>
+      <div class="card income-card">
+        <div class="card-icon"><i class="fa-solid fa-arrow-down"></i></div>
+        <div>
+          <span class="card-title">Income</span>
+          <h3 id="incomeAmount">₹0.00</h3>
+        </div>
+      </div>
+      <div class="card expense-card">
+        <div class="card-icon"><i class="fa-solid fa-arrow-up"></i></div>
+        <div>
+          <span class="card-title">Expenses</span>
+          <h3 id="expenseAmount">₹0.00</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Layout: Form + Transactions List -->
+    <main class="main-layout">
+      
+      <!-- Add Transaction Form -->
+      <section class="form-section">
+        <h3>Add Transaction</h3>
+        <form id="transactionForm">
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" id="desc" placeholder="e.g. Grocery shopping, Salary" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="amount">Amount (₹)</label>
+              <input type="number" id="amount" step="0.01" placeholder="0.00" required />
+            </div>
+
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select id="type">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category">
+                <option value="Salary">Salary</option>
+                <option value="Food">Food & Dining</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Bills">Bills & Utilities</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="fa-solid fa-plus"></i> Add Transaction
+          </button>
+        </form>
+      </section>
+
+      <!-- Transactions & History -->
+      <section class="history-section">
+        <div class="history-header">
+          <h3>Transaction History</h3>
+          <div class="filter-controls">
+            <select id="filterCategory">
+              <option value="all">All Categories</option>
+              <option value="Salary">Salary</option>
+              <option value="Food">Food & Dining</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Bills">Bills & Utilities</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <ul id="transactionList" class="transaction-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+        <p id="emptyState" class="empty-state">No transactions recorded yet.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
