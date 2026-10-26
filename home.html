@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrackIt - Take Control of Your Finances</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --income: #10b981;
+      --expense: #ef4444;
+      --dark-bg: #0f172a;
+      --dark-surface: #1e293b;
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* --- Navigation --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 5%;
+      background-color: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo i {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--dark-surface);
+      color: var(--text-light);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      padding: 5rem 5% 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #818cf8, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* --- Hero Interactive Visual Preview --- */
+    .hero-visual {
+      flex: 1;
+    }
+
+    .mockup-card {
+      background-color: var(--dark-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-balance {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mockup-balance span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .mockup-balance h2 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mock-stat {
+      background-color: var(--dark-bg);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .mock-stat.income h3 { color: var(--income); }
+    .mock-stat.expense h3 { color: var(--expense); }
+
+    .mock-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mock-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--dark-bg);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+
+    /* --- Features Section --- */
+    .features {
+      padding: 5rem 5%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: var(--dark-surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5%;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .hero-title { font-size: 2.5rem; }
+      .hero-subtitle { margin: 0 auto 2rem; }
+      .hero-actions { justify-content: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <a href="home.html" class="logo">
+      <i class="fa-solid fa-wallet"></i> TrackIt
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demo">Preview</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="index.html" class="btn-primary">
+      Open App <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Smart Personal Expense Tracking <span>Made Simple</span></h1>
+        <p class="hero-subtitle">Gain clear insights into your cash flow, monitor daily expenses, and keep your savings goal on target effortlessly.</p>
+        <div class="hero-actions">
+          <a href="index.html" class="btn-primary"><i class="fa-solid fa-rocket"></i> Get Started Free</a>
+          <a href="#features" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Mockup Card -->
+      <div id="demo" class="hero-visual">
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <strong>Financial Overview</strong>
+            <i class="fa-solid fa-ellipsis-vertical" style="color: var(--text-muted);"></i>
+          </div>
+          <div class="mockup-balance">
+            <span>Total Balance</span>
+            <h2>₹48,250.00</h2>
+          </div>
+          <div class="mockup-grid">
+            <div class="mock-stat income">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Income</span>
+              <h3>+₹65,000.00</h3>
+            </div>
+            <div class="mock-stat expense">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Expenses</span>
+              <h3>-₹16,750.00</h3>
+            </div>
+          </div>
+          <div class="mock-list">
+            <div class="mock-item">
+              <div>
+                <strong>Salary Credit</strong><br>
+                <small style="color: var(--text-muted);">Income • Oct 25</small>
+              </div>
+              <span style="color: var(--income); font-weight: 600;">+₹65,000.00</span>
+            </div>
+            <div class="mock-item">
+              <div>
+                <strong>Grocery Purchase</strong><br>
+                <small style="color: var(--text-muted);">Food • Oct 26</small>
+              </div>
+              <span style="color: var(--expense); font-weight: 600;">-₹2,450.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <h2 class="section-title">Designed for Everyday Financial Clarity</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fa-solid fa-list-check feature-icon"></i>
+          <h3>Real-time Logging</h3>
+          <p>Quickly add income or expense entries with tags, dates, and categories in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-filter feature-icon"></i>
+          <h3>Category Filtering</h3>
+          <p>Filter transaction histories seamlessly by categories like Food, Bills, Shopping, and Salary.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-shield-halved feature-icon"></i>
+          <h3>100% Private & Local</h3>
+          <p>Your financial data stays completely stored inside your web browser's LocalStorage.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TrackIt Expense Tracker. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
